@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Урок по кастомизации элементов и др.</title>
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/choices.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <form action="" class="form">
+      <fieldset class="form__fieldset">
+        <legend class="form__legend">Категории:</legend>
+        <label class="form__label">
+          <input class="form__input" type="checkbox" name="dinosaurs">
+          Динозавры
+          <span class="input__icon"></span>
+        </label>
+        <label class="form__label">
+          <input class="form__input" type="checkbox" name="bear">
+          Медведи
+          <span class="input__icon"></span>
+        </label>
+        <label class="form__label">
+          <input class="form__input" type="checkbox" name="roe">
+          Косули
+          <span class="input__icon"></span>
+        </label>
+        <label class="form__label">
+          <input class="form__input" type="checkbox" name="fox">
+          Лисы
+          <span class="input__icon"></span>
+        </label>
+        <label class="form__label">
+          <input class="form__input" type="checkbox" name="wolf">
+          Волки
+          <span class="input__icon"></span>
+        </label>
+        <label class="form__label">
+          <input class="form__input" type="checkbox" name="fox">
+          Олени и лоси
+          <span class="input__icon"></span>
+        </label>
+      </fieldset>
+    </form>
+    <select name="select" id="customSelect">
+      <option value="" disabled selected>Материал</option>
+      <option value="">Древесина</option>
+      <option value="">Металл</option>
+      <option value="">Камень</option>
+      <option value="">Пластик</option>
+      <option value="">Композитный</option>
+      <option value="">Гипс</option>
+    </select>
+    <div id="map" style="width: 460px; height: 460px"></div>
+    <div class="customscrollbar" data-simplebar id="customScrollbar">
+      Сложно сказать, почему многие известные личности представлены в исключительно положительном свете. Лишь активно
+      развивающиеся страны третьего мира будут объективно рассмотрены соответствующими инстанциями. Мы вынуждены
+      отталкиваться от того, что высокотехнологичная концепция общественного уклада представляет собой интересный
+      эксперимент проверки глубокомысленных рассуждений. Имеется спорная точка зрения, гласящая примерно следующее:
+      непосредственные участники технического прогресса освещают чрезвычайно интересные особенности картины в целом,
+      однако конкретные выводы, разумеется, обнародованы. Значимость этих проблем настолько очевидна, что
+      социально-экономическое развитие, а также свежий взгляд на привычные вещи - безусловно открывает новые горизонты
+      для первоочередных требований
+    </div>
+    <div class="container-form-two">
+      <form action="#" class="form-two" id="form-two">
+        <label for="name"></label>
+        <input type="text" placeholder="Имя*" class="form-input input-name" id="name">
+        <label for="phone"></label>
+        <input type="tel" placeholder="Телефон*" class="form-input input-telefon" id="phone">
+        <label for="mail"></label>
+        <input type="email" placeholder="E-mail*" class="form-input input-mail" id="mail">
+        <button class="btn-order">Заказать</button>
+      </form>
+    </div>
+    <div class="container-information">
+      <div class="text-information">
+        Следует отметить, что социальноэкономическое развитие способствует повышению качества переосмысления
+        внешнеэкономических политик.
+        <button class="tooltip"></button>
+      </div>
+    </div>
+  </div>
+  <script src="./js/choices.min.js"></script>
+  <script>
+    const element = document.querySelector('#customSelect');
+    const choices = new Choices(element, {
+      shouldSort: false,
+      searchEnabled: false,
+      position: 'bottom',
+      itemSelectText: ""
+    });
+  </script>
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU" type="text/javascript">
+  </script>
+  <script type="text/javascript">
+    // Функция ymaps.ready() будет вызвана, когда
+    // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
+    ymaps.ready(init);
+    function init() {
+      // Создание карты.
+      var myMap = new ymaps.Map("map", {
+        // Координаты центра карты.
+        // Порядок по умолчанию: «широта, долгота».
+        // Чтобы не определять координаты центра карты вручную,
+        // воспользуйтесь инструментом Определение координат.
+        center: [48.873, 2.356],
+        // Уровень масштабирования. Допустимые значения:
+        // от 0 (весь мир) до 19.
+        zoom: 16
+      });
+
+      var myPlacemark = new ymaps.Placemark([48.872185, 2.354224], {}, {
+        iconLayout: 'default#image',
+        iconImageHref: 'img/placemark.svg',
+        iconImageSize: [28, 40],
+        iconImageOffset: [-12, -40]
+      });
+
+      // Размещение геообъекта на карте.
+      myMap.geoObjects.add(myPlacemark);
+    }
+  </script>
+  <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+  <script>
+    new SimpleBar(document.getElementById('customScrollbar'), {
+      autoHide: false,
+      scrollbarMaxSize: 70
+    });
+  </script>
+  <script src="./js/inputmask.min.js"></script>
+  <script>
+    var selector = document.querySelector("input[type='tel']");
+
+    var im = new Inputmask("+7-(999)-999-99-99");
+    im.mask(selector)
+  </script>
+  <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+  <script>
+    console.log(JustValidate);
+    const validation = new JustValidate("#form-two", {
+      errorFieldCssClass: "is-invalid",
+      errorFieldStyle: {
+        border: "1px solid blue"
+      },
+      errorLabelCssClass: "is-label-invalid",
+      errorLabelStyle: {
+        color: 'red',
+        textDecoration: 'underlined',
+      },
+      focusInvalidField: true,
+      lockForm: true,
+      tooltip: {
+        position: 'top',
+      },
+      errorContainer: '.errors-container',
+    },
+    );
+    console.log(validation);
+
+    validation
+      .addField("#name", [
+        {
+          rule: "minLength",
+          value: 2
+        },
+        {
+          rule: "maxLength",
+          value: 16
+        },
+        {
+          rule: "required",
+          errorMessage: "Как вас зовут?"
+        }
+      ])
+      .addField("#phone", [
+        {
+          rule: "required",
+          errorMessage: "Укажите ваш телефон"
+        },
+        {
+          rule: "minLength",
+          value: 10
+        },
+        {
+          rule: "maxLength",
+          value: 10
+        }
+      ])
+      .addField("#mail", [
+        {
+          rule: "required",
+          errorMessage: "Укажите ваш e-mail"
+        },
+        {
+          rule: "email",
+          errorMessage: "Неправильно введен email"
+        }
+      ]);
+  </script>
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://unpkg.com/tippy.js@6"></script>
+  <script>
+    tippy('.tooltip', {
+      content: 'Глава 2, страница 176',
+      maxWidth: 170,
+    });
+  </script>
+</body>
+
+</html>
